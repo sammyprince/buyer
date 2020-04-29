@@ -16,7 +16,7 @@ const get_product = require('../controllers/Add_Product/get');
 
 register_route({
     router,
-    route: '/add_product',
+    route: '/id/product',
     post_method: add_product
 });
 
@@ -30,7 +30,7 @@ register_route({
 
 register_route({
     router,
-    route: '/get_all_products',
+    route: '/id/products',
     get_method: get_all_products
 });
 
@@ -44,7 +44,7 @@ register_route({
 
 register_route({
     router,
-    route: '/delete_product',
+    route: '/id/product/delete_product',
     get_method: delete_product
 });
 

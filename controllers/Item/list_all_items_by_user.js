@@ -16,7 +16,7 @@ const list = async (req, res) => {
         }
        else {
 
-        const _items = await items.getAllByUser(id);
+        const _items = await items.findByUser(id);
 
         if (!_items) {
             res.status(400).json({ message : "not found"});

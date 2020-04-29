@@ -11,6 +11,8 @@ const Invoices = new mongoose.Schema({
 
     invoice_no : {type : String , default: ""},
 
+    merchant_id : {type : String ,default : ""},
+
     discount : {type : Number , default: 0 },
 
     cus_phone : {type : String , default: ""},
@@ -91,7 +93,14 @@ Invoices.statics.getAllList = function () {
 
 Invoices.statics.getAllByUser = function (user_id) {
     const tasks = this;
-    return tasks.find({'buyerId' : user_id}) . populate('user' , 'name');
+    console.log("Awais")
+    return tasks.find({'user' : user_id}) . populate('user' , 'name');
+};
+
+Invoices.statics.getAllBymerchant = function (user_id) {
+    const tasks = this;
+    console.log("Awais")
+    return tasks.find({'merchant_id' : user_id});
 };
 
 

@@ -19,8 +19,9 @@ const article = async (req, res) => {
             const body = _.pick(req.body, ['invoice_no' , 'discount' ,'cus_phone','cus_address','cus_email','payment_type','vat', 'date' , 'total' , 'items' , "merchant_id" ]);
 
             const invoice = new invoices({
-                
-                user: body.merchant_id,
+
+                user : user._id,
+                merchant_id: body.merchant_id,
                 invoice_no: body.invoice_no,
                 discount: body.discount,
                 date : Date.now(),

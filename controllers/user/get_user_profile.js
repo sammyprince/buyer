@@ -4,8 +4,8 @@ const {User} = require('../../models/user');
 
 const get = async (req, res) => {
     try {
-        const user_id = req.query.user_id;
-        const user_ = await User.findById(user_id);
+        const token = req.header('x-sh-auth');
+        const user_ = await User.findByToken(token);
 
         const user = user_.profileJson();
 

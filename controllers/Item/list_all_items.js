@@ -4,6 +4,7 @@ const {items} = require('../../models/items');
 
 const list = async (req, res) => {
     try {
+        
         const _items = await items.getAllList();
 
         if (!_items) {

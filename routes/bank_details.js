@@ -13,7 +13,13 @@ const get_bank_details = require('../controllers/bank_details/get_bank_details')
 
 register_route({
     router,
-    route: '/add_bank_details',
+    route: '/id/bank-details',
+    post_method: submit_bank_details
+});
+
+register_route({
+    router,
+    route: '/id/bill-payment',
     post_method: submit_bank_details
 });
 
@@ -21,7 +27,13 @@ register_route({
 
 register_route({
     router,
-    route: '/get_bank_details',
+    route: '/id/bank-detail',
+    get_method: get_bank_details
+});
+
+register_route({
+    router,
+    route: '/id/bill-payments',
     get_method: get_bank_details
 });
 

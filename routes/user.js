@@ -23,7 +23,7 @@ const get_all_buyer = require('../controllers/user/get_all_buyer');
 register_route({
     router,
     auth_required: false,
-    route: '/register',
+    route: '/create',
     post_method: post_register
 });
 
@@ -38,20 +38,20 @@ register_route({
 register_route({
     router,
     auth_required: false,
-    route: '/forgot/password/email_pin',
+    route: '/forgot-password',
     post_method: post_forgot_password_gen_pin
 });
 
 register_route({
     router,
     auth_required: false,
-    route: '/reset/password/with/pin',
+    route: '/reset-password',
     post_method: post_reset_password_pin
 });
 
 register_route({
     router,
-    route: '/change/password',
+    route: '/confirm-password',
     post_method: post_reset_password
 });
 
@@ -66,13 +66,19 @@ register_route({
 
 register_route({
     router,
-    route: '/profile',
+    route: '/merchants/id/profile',
     get_method: get_profile
 });
 
 register_route({
     router,
-    route: '/get_all_merchants',
+    route: '/buyers/id/profile',
+    get_method: get_profile
+});
+
+register_route({
+    router,
+    route: '/merchants',
     get_method: get_all_merchants
 });
 
@@ -108,7 +114,13 @@ register_route({
 
 register_route({
     router,
-    route: '/update/profile',
+    route: '/merchants/id/profile-update',
+    post_method: post_profile_update
+});
+
+register_route({
+    router,
+    route: '/buyers/id/profile-update',
     post_method: post_profile_update
 });
 

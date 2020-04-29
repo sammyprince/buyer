@@ -37,13 +37,14 @@ app.use(cors());
 app.use(fileUpload());
 
 app.use('/', index);
-app.use('/user', user);
+app.use('/api', user);
 app.use('/merchant', bank_details);
+app.use('/buyer', bank_details);
 app.use('/app', app_api);
-app.use('/product', product);
+app.use('/merchants', product);
 app.use('/media', media);
 app.use('/invoices', invoices);
-app.use('/items', items);
+app.use('/i', items);
 
 app.use(function(req, res, next) {
   if (process.env.NODE_ENV === 'development') {

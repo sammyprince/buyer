@@ -17,7 +17,7 @@ const list_all_items_by_user = require('../controllers/Item/list_all_items_by_us
 
 register_route({
     router,
-    route: '/add_item',
+    route: '/merchants/id/sale',
     post_method: add_item
 });
 
@@ -37,7 +37,7 @@ register_route({
 
 register_route({
     router,
-    route: '/list_all_items_by_user',
+    route: '/merchants/id/sales',
     get_method: list_all_items_by_user
 });
 

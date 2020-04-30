@@ -9,7 +9,7 @@ const edit_article = async (req, res) => {
         let product_id = req.query._id;
         const body = _.pick(req.body, [ 'name', 'currency','amount' ]);
 
-        if(req.user.merchant == true){
+        if(req.user.account_type == "merchant"){
 
             const edited_product = await Add_Product.editProduct(product_id, body);
 

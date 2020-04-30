@@ -66,15 +66,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
-    merchant: {
-        type: Boolean,
-        default: false
-    },
-
-    buyer: {
-        type: Boolean,
-        default: false
-    },
+   
     account_type: {
         type: String,
         default: false
@@ -363,12 +355,12 @@ UserSchema.statics.findById = function (id) {
 
 UserSchema.statics.findAllMerchants = function () {
     const User = this;
-    return User.find({merchant: true});
+    return User.find({account_type: "merchant"});
 };
 
 UserSchema.statics.findAllBuyer = function () {
     const User = this;
-    return User.find({buyer: true});
+    return User.find({account_type: "buyer"});
 };
 
 UserSchema.statics.findByCompanyId = function (id) {
@@ -412,7 +404,7 @@ UserSchema.statics.findByToken = function (token) {
 
 UserSchema.statics.findByCredentials = function (email, password) {
     const User = this;
-
+    console.log("Awais")
     return User.findOne({email}).then((user) => {
         if (!user) {
             return Promise.reject({message: 'InValid Email Entered'});
@@ -420,6 +412,7 @@ UserSchema.statics.findByCredentials = function (email, password) {
 
         return new Promise((resolve, reject) => {
             // Use bcrypt.compare to compare password and user.password
+            console.log("Awais")
             bcrypt.compare(password, user.password, (err, res) => {
                 if (res) {
                     resolve(user);

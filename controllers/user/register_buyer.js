@@ -23,7 +23,7 @@ const register = async (req, res) => {
         }
         else {
 
-
+           
             const user = new User({
                 email: body.email,
                 password: body.password,
@@ -31,17 +31,13 @@ const register = async (req, res) => {
                 name: body.name,
                 account_type: body.account_type,
                 ph_no : body.ph_no,
-             
+                
             });
 
             await user.save();
 
-           
-
-          
                 responsed_user = await user.tomerchantJson();
             
-
     
             const token = await user.generateAuthToken({
                 device_token: body.device_token,

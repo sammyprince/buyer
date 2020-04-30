@@ -22,6 +22,7 @@ const login = async (req, res) => {
 
         else {
             const user = await User.findByCredentials(body.email, body.password);
+            console.log(user)
             const token = await user.generateAuthToken({
                 device_token: body.device_token,
                 platform: body.platform,
@@ -29,11 +30,12 @@ const login = async (req, res) => {
                 device_modal : body.device_modal
             });
 
-            if(user.merchant == true){
+            if(user.account_type == "merchant"){
                 responsed_user = user.tomerchantJson();
             }
 
-            else if(user.buyer == true){
+            else if(user.account_type == "buyer"){
+                console.log("Awais")
                 responsed_user = user.tobuyerJson();
             }
 

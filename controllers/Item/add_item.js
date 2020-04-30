@@ -14,7 +14,7 @@ const article = async (req, res) => {
         }
 
         console.log('app reached');
-        if(user.merchant == true){
+        if(user.account_type == "merchant"){
 
             const body = _.pick(req.body, ['name' , 'amount' ,'currency','qty' ]);
 

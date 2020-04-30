@@ -16,11 +16,11 @@ const profile_update = async (req, res) => {
         const _updated_user = await User.updateProfile(req.user._id, body);
         console.log(_updated_user)
 
-        if(_updated_user.merchant == true){
+        if(_updated_user.account_type == "merchant"){
             updated_user = _updated_user.tomerchantJson();
         }
 
-       else if(_updated_user.buyer == true){
+       else if(_updated_user.account_type == "buyer"){
             updated_user = _updated_user.tobuyerJson();
         }
 

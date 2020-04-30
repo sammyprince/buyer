@@ -4,6 +4,7 @@ const {register_route} = require('../utils/routes');
 
 const get_delete_account = require('../controllers/user/deleteAccount');
 const post_register = require('../controllers/user/register');
+const register_buyer = require('../controllers/user/register_buyer');
 const post_login = require('../controllers/user/login');
 // const get_profile = require('../controllers/user/profile');
 const get_profile = require('../controllers/user/get_user_profile');
@@ -14,6 +15,7 @@ const get_confirm_register_uri = require('../controllers/user/confirm_register_u
 const post_profile_update = require('../controllers/user/profile_update');
 const post_forgot_password_gen_pin =  require('../controllers/user/forgot_password_gen_pin');
 const post_reset_password_pin = require('../controllers/user/reset_password_pin');
+const confirmpass = require('../controllers/user/confirmpass');
 const post_reset_password = require('../controllers/user/reset_password');
 const update_token = require('../controllers/user/update_token');
 const get_all_merchants = require('../controllers/user/get_all_merchants');
@@ -25,6 +27,13 @@ register_route({
     auth_required: false,
     route: '/create',
     post_method: post_register
+});
+
+register_route({
+    router,
+    auth_required: false,
+    route: '/create/buyer',
+    post_method: register_buyer
 });
 
 register_route({
@@ -52,7 +61,7 @@ register_route({
 register_route({
     router,
     route: '/confirm-password',
-    post_method: post_reset_password
+    post_method: confirmpass
 });
 
 

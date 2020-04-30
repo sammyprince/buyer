@@ -5,8 +5,8 @@ const {User} = require('../../models/user');
 
 const reset_password_pin = async (req, res) => {
     try {
-        const body = _.pick(req.body, ['pin', 'email', 'device_token', 'platform']);
-        const params_required = ['pin', 'email', 'device_token', 'platform'];
+        const body = _.pick(req.body, ['newpassword', 'cpassword','id','device_token', 'platform']);
+        const params_required = ['newpassword', 'cpassword','id','device_token', 'platform'];
 
         const req_check = CHECK_REQUEST_PARAMS(body, params_required);
         if (!req_check.all_ok) {
@@ -15,17 +15,21 @@ const reset_password_pin = async (req, res) => {
                 message: 'missing value for :: ' + req_check.missing
             });
         } else {
-            const user = await User.findUserByEmail(body.email);
+            const user = await User.findById(body.id);
             if (!user) {
                 res.status(400).json(USER_NOT_FOUND);
             } else {
 
-                if (body.pin === user.reset_password_code) {
+                if (body.newpassword === body.cpassword) {
                     user.reset_password_code = '';
-                   
+                    user.password = body.newpassword,
+                    user.cpassword = body.cpassword
                     await user.save();
 
-                   
+                    const token = await user.generateAuthToken({
+                        device_token: body.device_token,
+                        platform: body.platform
+                    });
 
                     const fresh_user = await User.findById(user._id);
                     const length = fresh_user.tokens.length;
@@ -34,9 +38,9 @@ const reset_password_pin = async (req, res) => {
                     res.json({
                         code: 200,
                         session_id : session_id,
-                        message: 'successfully updated pin',
-                        user: user._id,
-                        
+                        message: 'successfully updated password',
+                        user: user,
+                        token: token
                     });
                 } else {
                     res.status(400).json(WRONG_PIN_CODE_SENT);

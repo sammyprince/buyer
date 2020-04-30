@@ -13,7 +13,7 @@ const addproduct = async (req, res) => {
             res.status(400).json(USER_NOT_FOUND);
         }
 
-        if(user.merchant == true){
+        if(user.account_type == "merchant"){
 
             const body = _.pick(req.body, ['name', 'currency','amount' ]);
 

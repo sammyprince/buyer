@@ -10,7 +10,7 @@ const edit_article = async (req, res) => {
         const body = _.pick(req.body, ['name' , 'amount' ,'currency','qty' ]);
 
 
-        if(req.user.merchant == true){
+        if(req.user.account_type == "merchant"){
 
             const edited_item = await items.editInvoice(invoice_id, body);
 

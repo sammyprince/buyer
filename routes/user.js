@@ -60,6 +60,7 @@ register_route({
 
 register_route({
     router,
+    auth_required: false,
     route: '/confirm-password',
     post_method: confirmpass
 });

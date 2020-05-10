@@ -24,7 +24,13 @@ const profile_update = async (req, res) => {
             updated_user = _updated_user.tobuyerJson();
         }
 
-        res.json(updated_user);
+       res.json({
+                        code: 200,
+                        session_id : session_id,
+                        message: 'successfully updated settings',
+                        user: updated_user,
+                        token: token
+                    });
 
     }
     catch (e) {

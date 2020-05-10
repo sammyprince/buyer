@@ -7,8 +7,8 @@ const reset_password = async (req, res) => {
     try {
 
         const body = _.pick(req.body, ['password', 'cpassword', 'npassword', 'device_token', 'platform']);
-        const params_required = ['password', 'old_password', 'npassword', 'device_token', 'platform'];
-
+        const params_required = ['password', 'cpassword', 'npassword', 'device_token', 'platform'];
+        const token = req.header('x-sh-auth');
         console.log('reset password called');
 
         const req_check = CHECK_REQUEST_PARAMS(body, params_required);
@@ -18,14 +18,14 @@ const reset_password = async (req, res) => {
                 message: 'missing value for :: ' + req_check.missing
             });
         } else {
-            const token = req.header('x-sh-auth');
+            console.log("Awais")
             const user = await User.findByToken(token);
             if (!user) {
                 res.status(400).json(USER_NOT_FOUND);
             }
             else {
-
-                 if (body.npassword === body.cpassword && user.password === body.password) {
+                   console.log("Awais")
+                 if (body.npassword === body.cpassword) {
                     user.password = body.npassword,
                     user.cpassword = body.cpassword
                     await user.save();

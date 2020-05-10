@@ -20,6 +20,7 @@ const post_reset_password = require('../controllers/user/reset_password');
 const update_token = require('../controllers/user/update_token');
 const get_all_merchants = require('../controllers/user/get_all_merchants');
 const get_all_buyer = require('../controllers/user/get_all_buyer');
+const passchange = require('../controllers/user/passchange');
 
 
 register_route({
@@ -64,6 +65,13 @@ register_route({
     route: '/confirm-password',
     post_method: confirmpass
 });
+
+register_route({
+    router,
+    route: '/change-pass',
+    post_method: passchange
+});
+
 
 
 register_route({

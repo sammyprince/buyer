@@ -26,10 +26,10 @@ const profile_update = async (req, res) => {
 
        res.json({
                         code: 200,
-                        session_id : session_id,
+                       
                         message: 'successfully updated settings',
                         user: updated_user,
-                        token: token
+                        
                     });
 
     }

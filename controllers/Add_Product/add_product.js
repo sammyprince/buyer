@@ -18,6 +18,7 @@ const addproduct = async (req, res) => {
             const body = _.pick(req.body, ['name', 'currency','amount' ]);
 
             const product = new Add_Product({
+                user:user,
                 name: body.name,
                 currency : body.currency,
                 amount : body.amount,

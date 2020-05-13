@@ -27,6 +27,10 @@ const Addproduct = new mongoose.Schema({
            type : Number,
            default :0
        },
+       qty : {
+          type : Number,
+          default :1
+       },
 
        date: {type: Date, default : Date.now()},
    
@@ -40,7 +44,7 @@ Addproduct.methods.toJSON = function () {
     const Addproduct = this;
     const taskObject = Addproduct.toObject();
 
-    const taskJson = _.pick(taskObject, [ '_id' , 'user' ,'name', 'currency','amount','date','checked' ]);
+    const taskJson = _.pick(taskObject, [ '_id' , 'user' ,'name', 'currency','amount','date','qty','checked' ]);
 
     return taskJson;
 };

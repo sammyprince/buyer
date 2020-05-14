@@ -10,7 +10,6 @@ const edit_article = async (req, res) => {
         const body = _.pick(req.body, ['invoice_no' , 'discount' ,'cus_phone','cus_address','cus_email','payment_type','vat', 'date' , 'total' , 'items' , "merchant_id" ]);
 
 
-        if(req.user.account_type == "buyer"){
 
             const edited_invoice = await invoices.editInvoice(invoice_id, body);
 
@@ -18,15 +17,6 @@ const edit_article = async (req, res) => {
                 code: 200,
                 message : "edited!"
             });
-
-        }
-
-        else {
-            res.json({
-                code: 400,
-                message : "you are not allowed to edit it!"
-            });
-        }
 
     }
     catch (e) {

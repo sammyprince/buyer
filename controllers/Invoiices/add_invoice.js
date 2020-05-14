@@ -14,7 +14,7 @@ const article = async (req, res) => {
         }
 
         console.log('app reached');
-        if(user.account_type == "buyer"){
+        
 
             const body = _.pick(req.body, ['invoice_no' , 'discount' ,'cus_phone','cus_address','cus_email','payment_type','vat', 'date' , 'total' , 'items' , "merchant_id" ]);
 
@@ -41,15 +41,6 @@ const article = async (req, res) => {
                 message : 'Successfully Added',
                 invoice: invoice
             };
-
-        }
-
-        else {
-            resp = {
-                code: 400,
-                message : 'You are not an buyer'
-            };
-        }
 
         res.json(resp);
     }

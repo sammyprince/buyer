@@ -27,26 +27,7 @@ const Invoices = new mongoose.Schema({
 
     vat : {type : Number , default : 0},
 
-    items : [
-        {
-            name : {
-                type : String ,
-                default : ""
-            },
-            qty : {
-                type : Number ,
-                default : 0
-            },
-            currency : {
-                type : String ,
-                default : ""
-            },
-            amount : {
-                type : Number ,
-                default : 0
-            }
-        }
-    ],
+    items : [],
 
     total : {type: Number , default : 0}
 });

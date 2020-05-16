@@ -3,6 +3,7 @@ const {USER_NOT_FOUND} = require('../common/error_codes');
 const {RENDER_BAD_REQUEST} = require('../common/utils');
 const {User} = require('../../models/user');
 const {invoices} = require('../../models/invoices');
+var QRCode = require('qrcode')
 
 const article = async (req, res) => {
     try {
@@ -36,10 +37,16 @@ const article = async (req, res) => {
 
             await invoice.save();
 
+
+         
             resp = {
                 code: 200,
                 message : 'Successfully Added',
-                invoice: invoice
+                invoice: invoice,
+                data_url : QRCode.toDataURL(JSON.stringify(invoice), function (err, url) {
+                    console.log(url)
+                    return '' + url
+                  })
             };
 
         res.json(resp);

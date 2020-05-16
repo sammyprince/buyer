@@ -78,10 +78,10 @@ Invoices.statics.getAllByUser = function (user_id) {
     return tasks.find({'user' : user_id}) . populate('user' , 'name');
 };
 
-Invoices.statics.getAllBymerchant = function (user_id) {
+Invoices.statics.getAllBymerchant = function (email) {
     const tasks = this;
     console.log("Awais")
-    return tasks.find({'merchant_id' : user_id});
+    return tasks.find({'cus_email' : email});
 };
 
 

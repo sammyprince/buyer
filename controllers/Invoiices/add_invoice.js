@@ -37,16 +37,19 @@ const article = async (req, res) => {
 
             await invoice.save();
 
+            let qr_code
+
+            QRCode.toString(JSON.stringify(invoice), function (err, url) {
+                qr_code = url;
+              })
+            console.log(qr_code)
 
          
             resp = {
                 code: 200,
                 message : 'Successfully Added',
                 invoice: invoice,
-                data_url : QRCode.toDataURL(JSON.stringify(invoice), function (err, url) {
-                    console.log(url)
-                    return '' + url
-                  })
+                data_url : qr_code
             };
 
         res.json(resp);

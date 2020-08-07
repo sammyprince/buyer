@@ -7,13 +7,16 @@ const list = async (req, res) => {
   try {
     const token = req.header("x-sh-auth");
     const user = await User.findByToken(token);
+    const { productName } = req.query;
+    console.log(productName);
 
-    const email = user.email;
-    console.log(email);
     if (!user) {
       res.status(400).json(USER_NOT_FOUND);
     } else {
-      const _invoices = await invoices.searchBycustomerEmail(email);
+      const _invoices = await invoices.searchByProductName(
+        user._id,
+        productName
+      );
 
       if (!_invoices) {
         res.status(400).json({ message: "not found" });
